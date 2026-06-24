@@ -1,0 +1,53 @@
+# ========================================
+# 工作流引擎配置
+# ========================================
+
+# 工作流引擎开关
+workflow.enabled=true
+
+# 流程定义配置
+workflow.definition.default-version=1
+workflow.definition.auto-start=false
+
+# 任务分配策略
+workflow.task.assignee.strategy=USER
+# 可选值：USER（指定用户）、ROLE（角色）、DEPT_LEADER（部门负责人）
+
+# 任务处理配置
+workflow.task.allow-reject=true
+workflow.task.allow-transfer=false
+workflow.task.timeout-hours=24
+
+# 审批流程配置
+# 采购计划审批流程
+workflow.process.purchase-plan.key=PURCHASE_PLAN
+workflow.process.purchase-plan.name=采购计划审批流程
+workflow.process.purchase-plan.nodes=SUBMIT,DEPT_APPROVE,FINANCE_APPROVE,END
+
+# 预算调整审批流程
+workflow.process.budget-adjust.key=BUDGET_ADJUST
+workflow.process.budget-adjust.name=预算调整审批流程
+workflow.process.budget-adjust.nodes=SUBMIT,FINANCE_APPROVE,GM_APPROVE,END
+
+# 预警工单处理流程
+workflow.process.alert-workorder.key=ALERT_WORKORDER
+workflow.process.alert-workorder.name=预警工单处理流程
+workflow.process.alert-workorder.nodes=CREATE,ASSIGN,PROCESS,RESOLVE,CLOSE
+
+# 审批级别配置
+workflow.approval.level1-limit=10000
+workflow.level2-limit=50000
+workflow.level3-limit=100000
+# 金额 <= 1 万：部门审批
+# 1 万 < 金额 <= 5 万：部门 + 财务审批
+# 金额 > 5 万：部门 + 财务 + 总经理审批
+
+# 通知配置
+workflow.notification.enabled=true
+workflow.notification.email=false
+workflow.notification.sms=false
+workflow.notification站内信=true
+
+# 超时提醒配置
+workflow.timeout.reminder-enabled=true
+workflow.timeout.reminder-hours=2

@@ -1,0 +1,70 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  datasource:
+    # MySQL 数据库配置（生产环境使用）
+    url: jdbc:mysql://localhost:3306/shuju?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&connectionCollation=utf8mb4_unicode_ci&characterSetResults=utf8mb4
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 100
+    # 数据库初始化配置
+    initialization-mode: never
+    # schema: classpath:schema.sql
+    continue-on-error: false
+  
+  # MySQL 配置（生产环境使用）
+  h2:
+    console:
+      enabled: false
+      path: /h2-console
+      settings:
+        web-allow-others: true
+
+  
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
+  
+  web:
+    resources:
+      add-mappings: true
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.example.finance.entity
+  configuration:
+    map-underscore-to-camel-case: true
+  # MySQL 配置（生产环境使用）
+  initialization-mode: never
+
+# 添加 Debug 日志配置
+logging:
+  level:
+    com.example.finance: DEBUG
+    com.example.finance.mapper: DEBUG
+    com.example.finance.service: DEBUG
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET:this_is_a_very_secure_secret_key_for_jwt_2024}
+  expiration: ${JWT_EXPIRATION:86400000}
+  header: ${JWT_HEADER:Authorization}
+  prefix: ${JWT_PREFIX:Bearer }
+
+schedule:
+  data-collection: 0 0/30 * * * ?
+  budget-check: 0 0/15 * * * ?
+  trend-prediction: 0 0 2 * * ?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
