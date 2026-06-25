@@ -25,3 +25,9 @@ Thumbs.db
 
 # === 归档大文件 ===
 archive/apache-maven-3.9.6-bin.zip
+*.jar
+*.tar.gz
+deploy/*.jar
+deploy/*.tar.gz
+finance-deploy.tar.gz
+data-imports.tar.gz
